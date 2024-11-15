@@ -2,7 +2,7 @@
 
 **AIM:**
 
-To implement  SR flipflop using verilog and validating their functionality using their functional tables
+To implement SR flipflop using verilog and validating their functionality using their functional tables
 
 **SOFTWARE REQUIRED:**
 
@@ -34,37 +34,54 @@ The maximum possible groupings of adjacent ones are already shown in the figure.
 
 **Procedure**
 
-/* write all the steps invloved */
-1.Define Module : Define a Verilog module for SR flip-flop with inputs (S,R) and outputs (Q,Q_bar).
+1.Type the program in Quartus software.
 
-2.Declare Inputs and Outputs : Declare input and output ports for the module.
+2.Compile and run the program.
 
-3.Implement Flip-Flop Logic: Write Verilog code to implement the SR flip-flop logic based on its functional table.
+3.Generate the RTL schematic and save the logic diagram.
 
-4.Simulate Using Testbench: Write a Verilog testbench to simulate the behavior of the SR flip-flop under different input conditions.
+4.Create nodes for inputs and outputs to generate the timing diagram.
 
-5.Apply Input Stimuli: In the testbench, apply various combinations of input stimuli (S, R) to cover all possible input states.
+5.For different input combinations generate the timing diagram.
 
-6.Verify Output Behavior: Verify that the output behavior of the SR flip-flop matches the expected behavior defined by its functional table.
-
-7.Check for Race Conditions: Ensure that there are no race conditions or undefined states in the design by analyzing the timing and sequence of input changes.
 
 **PROGRAM**
-
+```
 /* Program for flipflops and verify its truth table in quartus using Verilog programming.
 Developed by: MOPURI ANKITHA
-RegisterNumber: 212223040117
+RegisterNumber:212223040117
 */
-
+```
+```
+module EXP_6(q, q_bar, s,r, clk, reset);//SR Flip Flop Behavioral Level using ‘case’ 
+  input s,r,clk, reset;
+  output reg q;
+  output q_bar;
+ 
+  always@(posedge clk) begin // for synchronous reset
+    if(!reset)       
+			q <= 0;
+    else 
+  begin
+      case({s,r})       
+	     2'b00: q <= q;    
+        2'b01:q<=1'b0;  
+        2'b10:q<=1'b1;   
+        2'b11:q<=1'bx;   
+      endcase
+    end
+  end
+  assign q_bar = ~q;
+endmodule
+```
 **RTL LOGIC FOR FLIPFLOPS**
-![image](https://github.com/user-attachments/assets/e8d2c379-a6f7-4494-af08-f0fc651d3eec)
+![image](https://github.com/23004513/SR-FLIPFLOP-USING-CASE/assets/138973069/2e7d6ca0-c02b-4c31-b3eb-f90bb1b7e0a5)
 
 
 **TIMING DIGRAMS FOR FLIP FLOPS**
-![image](https://github.com/user-attachments/assets/f07f680f-f5fe-4555-9aec-856b804b14d9)
+![image](https://github.com/23004513/SR-FLIPFLOP-USING-CASE/assets/138973069/78e77503-f09f-4696-8e28-41ec277e5350)
 
 
 **RESULTS**
 
-Thus the program to implement a SR flipflop using verilog and validating their functionality using their functional tables is successfully completed.
-
+TThus the program to implement a SR flipflop using verilog and validating their functionality using their functional tables is successfully completed.
